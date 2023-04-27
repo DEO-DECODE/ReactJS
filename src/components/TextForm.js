@@ -52,23 +52,23 @@ export default function TextForm(props) {
             value={text}
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#0d3e85" : "white",
               color: props.mode === "dark" ? "white" : "#05357b",
             }}
             id="myBox"
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-3" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-3 my-1" onClick={handleUpClick}>
           Convert to upperCase
         </button>
-        <button className="btn btn-primary mx-3" onClick={handleLowClick}>
+        <button className="btn btn-primary mx-3 my-1" onClick={handleLowClick}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleCopyText}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleCopyText}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleClearText}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleClearText}>
           Clear Text
         </button>
         <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
@@ -77,9 +77,20 @@ export default function TextForm(props) {
         <div className="container my-3">
           <h1>Your Text Summary</h1>
           <p>
-            {text.split(" ").length} Words and {text.length} characters
+            {
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            }{" "}
+            Words and {text.length} characters
           </p>
-          <p>{0.008 * text.split(" ").length} Minutes to read </p>
+          <p>
+            {0.008 *
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length}{" "}
+            Minutes to read{" "}
+          </p>
           <h2>Preview</h2>
           <p>
             {text.length > 0
